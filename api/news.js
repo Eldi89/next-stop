@@ -1,4 +1,4 @@
-// Fermata morning report: Vercel serverless function (Node 18+, no dependencies).
+// Next Stop morning report: Vercel serverless function (Node 18+, no dependencies).
 // GET /api/news  -> { date, generatedAt, brief, markets, sections, errors }
 // Pulls live RSS headlines + a market snapshot, and (optionally) asks Claude to write the brief
 // when the ANTHROPIC_API_KEY environment variable is set in Vercel.

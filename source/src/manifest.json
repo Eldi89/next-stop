@@ -1,7 +1,7 @@
 {
-  "name": "Fermata",
-  "short_name": "Fermata",
-  "description": "Five-minute lessons for the subway.",
+  "name": "Next Stop",
+  "short_name": "Next Stop",
+  "description": "One stop, one lesson. Five-minute lessons for the subway.",
   "start_url": "/#/today",
   "scope": "/",
   "display": "standalone",

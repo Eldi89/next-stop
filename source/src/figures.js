@@ -1,4 +1,4 @@
-/* Fermata figure renderer: turns figure data into clean HTML/SVG using the lesson's line color (CSS var --c). */
+/* Next Stop figure renderer: turns figure data into clean HTML/SVG using the lesson's line color (CSS var --c). */
 const FIG = (() => {
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(^|[\s(])_(.+?)_(?=[\s.,;:!?)]|$)/g, '$1<i>$2</i>');

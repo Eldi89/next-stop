@@ -1,4 +1,4 @@
-/* Fermata app */
+/* Next Stop app */
 (() => {
   const { render: fig, wireBreath, md, esc } = FIG;
   const $ = (s, r = document) => r.querySelector(s);
@@ -216,12 +216,12 @@
     tabs(''); document.body.classList.add('reading'); setLine('ai');
     let sel = new Set(S.subjects);
     view().innerHTML = `<div class="arrive" style="min-height:auto;margin-top:6vh">
-      <div class="sign"><div class="sign-top">${SUBJECTS.map(s => bullet(s.id, 'sm')).join('')}</div><h2>Fermata</h2><p>One stop, one lesson. Five minutes a day on the train for money, accounting, investing, AI and a better mind.</p></div></div>
+      <div class="sign"><div class="sign-top">${SUBJECTS.map(s => bullet(s.id, 'sm')).join('')}</div><h2>Next Stop</h2><p><b>One stop, one lesson.</b> Five minutes a day on the train for money, accounting, investing, AI and a better mind.</p></div></div>
       <div class="panel" style="margin-top:16px"><div class="field"><label for="nm">What should I call you?</label><input type="text" id="nm" value="${esc(S.name)}" placeholder="Your first name" autocomplete="given-name"></div>
       <div class="field"><label>Your lines (you can change these later)</label>${SUBJECTS.map(s => `<button class="row" data-s="${s.id}" style="padding:10px 0">${bullet(s.id)}<div class="grow"><div class="t">${s.name}</div><div class="s">${s.blurb}</div></div><span class="toggle ${sel.has(s.id) ? 'on' : ''}" style="${subStyle(s.id)}"></span></button>`).join('')}</div>
       <div class="field"><label>How should I choose your daily lesson?</label>${modeSeg()}</div></div>
       <button class="btn line block" id="go" style="margin-top:18px;height:52px">Start riding</button>
-      <p class="muted" style="font-size:12.5px;text-align:center;margin-top:10px">Version ${window.FERMATA_VERSION || 'dev'}</p><p class="muted" style="font-size:13.5px;text-align:center;margin-top:14px">Tip: in Safari tap Share, then “Add to Home Screen”, so Fermata opens like an app and works offline in the tunnel.</p>`;
+      <p class="muted" style="font-size:12.5px;text-align:center;margin-top:10px">Version ${window.FERMATA_VERSION || 'dev'}</p><p class="muted" style="font-size:13.5px;text-align:center;margin-top:14px">Tip: in Safari tap Share, then “Add to Home Screen”, so Next Stop opens like an app and works offline in the tunnel.</p>`;
     $$('[data-s]').forEach(b => b.onclick = () => { const id = b.dataset.s; sel.has(id) ? sel.delete(id) : sel.add(id); $('.toggle', b).classList.toggle('on', sel.has(id)); });
     wireModeSeg();
     $('#go').onclick = () => { S.name = $('#nm').value.trim(); S.subjects = SUBJECTS.map(s => s.id).filter(id => sel.has(id)); if (!S.subjects.length) S.subjects = SUBJECTS.map(s => s.id); S.onboarded = true; S.today = null; save(); location.hash = '#/today'; };
@@ -539,7 +539,7 @@
     function draw(n, status) {
       const note = status === 'loading' ? 'Fetching this morning’s report…' : status === 'offline' ? 'You are offline. Showing the last report.' : status === 'error' ? 'Could not reach the report service. ' + (n ? 'Showing the last report.' : '') : '';
       if (!n) {
-        view().innerHTML = `<div class="page-h"><div><h1>Morning report</h1><p>${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p></div></div><div class="empty"><b>${status === 'loading' ? 'Loading…' : 'No report yet'}</b>${status === 'loading' ? 'Pulling live markets and headlines.' : esc(note) + ' The report works once Fermata runs online on Vercel (it needs the small /api/news service). Lessons work everywhere.'}</div>`;
+        view().innerHTML = `<div class="page-h"><div><h1>Morning report</h1><p>${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p></div></div><div class="empty"><b>${status === 'loading' ? 'Loading…' : 'No report yet'}</b>${status === 'loading' ? 'Pulling live markets and headlines.' : esc(note) + ' The report works once Next Stop runs online on Vercel (it needs the small /api/news service). Lessons work everywhere.'}</div>`;
         return;
       }
       const b = n.brief || {};
@@ -583,15 +583,15 @@
         <button class="row" id="exp"><div class="grow"><div class="t">Back up progress</div><div class="s">Download a small file with everything you have done</div></div></button>
         <label class="row" style="cursor:pointer"><div class="grow"><div class="t">Restore from backup</div><div class="s">Use it to move to a new phone or browser</div></div><input type="file" id="imp" accept="application/json,.json" hidden></label>
         <button class="row" id="rst"><div class="grow"><div class="t" style="color:var(--bad)">Reset all progress</div></div></button></div>
-      <p class="muted" style="font-size:12.5px;text-align:center;margin:22px 0 0"><b style="color:var(--ink-2)">Fermata v${window.FERMATA_VERSION || 'dev'}</b><br>${L.lessons.length} stations · ${Object.values(L.exams).reduce((a, e) => a + Object.values(e).reduce((x, q) => x + q.length, 0), 0)} exam questions · build ${window.FERMATA_BUILD || 'dev'}</p>`;
+      <p class="muted" style="font-size:12.5px;text-align:center;margin:22px 0 0"><b style="color:var(--ink-2)">Next Stop v${window.FERMATA_VERSION || 'dev'}</b><br>${L.lessons.length} stations · ${Object.values(L.exams).reduce((a, e) => a + Object.values(e).reduce((x, q) => x + q.length, 0), 0)} exam questions · build ${window.FERMATA_BUILD || 'dev'}</p>`;
     wireModeSeg();
     $$('[data-s]').forEach(b => b.onclick = () => { const id = b.dataset.s; const on = S.subjects.includes(id); if (on && S.subjects.length === 1) return toast('Keep at least one line'); S.subjects = on ? S.subjects.filter(x => x !== id) : [...S.subjects, id]; S.today = null; save(); $('.toggle', b).classList.toggle('on', !on); });
     $('#nm').onchange = e => { S.name = e.target.value.trim(); save(); };
     $$('#fsSeg button').forEach(b => b.onclick = () => { S.fs = +b.dataset.v; save(); $$('#fsSeg button').forEach(x => x.classList.toggle('on', x === b)); });
     $$('#thSeg button').forEach(b => b.onclick = () => { S.theme = b.dataset.v; save(); applyTheme(); $$('#thSeg button').forEach(x => x.classList.toggle('on', x === b)); });
     $$('#rtSeg button').forEach(b => b.onclick = () => { S.rate = +b.dataset.v; save(); $$('#rtSeg button').forEach(x => x.classList.toggle('on', x === b)); });
-    $('#exp').onclick = () => { const blob = new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `fermata-backup-${dkey()}.json`; document.body.appendChild(a); a.click(); a.remove(); };
-    $('#imp').onchange = e => { const f = e.target.files[0]; if (!f) return; f.text().then(t => { const d = JSON.parse(t); if (!d || typeof d.done !== 'object') throw 0; S = Object.assign(defaults(), d); save(); toast('Progress restored'); vMe(); }).catch(() => toast('That file is not a Fermata backup')); };
+    $('#exp').onclick = () => { const blob = new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `nextstop-backup-${dkey()}.json`; document.body.appendChild(a); a.click(); a.remove(); };
+    $('#imp').onchange = e => { const f = e.target.files[0]; if (!f) return; f.text().then(t => { const d = JSON.parse(t); if (!d || typeof d.done !== 'object') throw 0; S = Object.assign(defaults(), d); save(); toast('Progress restored'); vMe(); }).catch(() => toast('That file is not a Next Stop backup')); };
     $('#rst').onclick = () => { if (confirm('Erase all progress, review cards and settings on this device?')) { const keep = { name: S.name }; S = Object.assign(defaults(), keep, { onboarded: true }); save(); toast('Progress reset'); vMe(); } };
   }
   function applyTheme() { if (S.theme === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.dataset.theme = S.theme; }

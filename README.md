@@ -1,4 +1,6 @@
-# Fermata
+# Next Stop
+
+**One stop, one lesson.**
 
 Five-minute lessons for the subway, plus Deep Dives, exams and a live morning market report.
 
@@ -14,7 +16,7 @@ Five-minute lessons for the subway, plus Deep Dives, exams and a live morning ma
 
 ## Put it online (same way as Nota Spese)
 
-1. Create a new GitHub repository, for example `Eldi89/fermata`.
+1. Create a new GitHub repository, for example `Eldi89/next-stop`.
 2. Upload **everything in this folder** to the root of the repo, keeping the `api` and `fonts` folders.
 3. In Vercel: Add New → Project → import the repo → Deploy. No build settings needed.
 4. On the iPhone open the Vercel link in Safari → Share → Add to Home Screen.
@@ -44,3 +46,4 @@ Progress lives on the phone. Use You → Back up progress to save a file, and Re
 The version is in `source/src/VERSION` and shows at the bottom of the You screen.
 - 1.0.0: first release, 98 lessons, exams, review deck, morning report
 - 1.1.0: CNBC market prices in the morning report, mixed learning sources, visible version number
+- 1.2.0: renamed from Fermata to Next Stop

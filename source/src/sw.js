@@ -1,4 +1,4 @@
-// Fermata service worker: the app and all lessons work offline (subway tunnels).
+// Next Stop service worker: the app and all lessons work offline (subway tunnels).
 const VERSION = '__BUILD__';
 const CACHE = 'fermata-' + VERSION;
 const CORE = ['/', '/index.html', '/manifest.json', '/icon-180.png', '/icon-192.png', '/icon-512.png', '/fonts/archivo-latin-wdth-normal.woff2', '/fonts/literata-latin-opsz-normal.woff2', '/fonts/literata-latin-opsz-italic.woff2'];
