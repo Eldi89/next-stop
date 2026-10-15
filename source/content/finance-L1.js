@@ -1,0 +1,171 @@
+LEARN.add({"subject":"finance","lessons":[
+{
+"id":"fin-1-01","subject":"finance","level":1,"order":1,"type":"short","minutes":5,
+"title":"What money really is",
+"hook":"A $20 bill is just paper. So why will a stranger hand you lunch for it?",
+"tags":["money","inflation","purchasing power","currency","federal reserve","cpi"],
+"blocks":[
+{"t":"p","text":"You tap your card at the deli: $14 for a sandwich and a coffee. The cashier never sees gold, never checks your bank. She just trusts that the number you send her will buy something tomorrow. That trust is what money really is."},
+{"t":"h","text":"Money is a tool with three jobs"},
+{"t":"p","text":"Before money, people traded directly. A baker who wanted shoes had to find a shoemaker who wanted bread, at the same moment. Economists call this the “double coincidence of wants”, and it made trade slow and painful. Money solves it by doing three jobs at once."},
+{"t":"fig","kind":"grid","items":[{"icon":"🔄","label":"Medium of exchange","note":"Everyone accepts it"},{"icon":"🏦","label":"Store of value","note":"Holds value over time"},{"icon":"📏","label":"Unit of account","note":"One ruler for prices"}],"caption":"Anything that does these three jobs well works as money."},
+{"t":"list","items":["**Medium of exchange:** the baker sells bread for dollars and uses the dollars to buy shoes from anyone.","**Store of value:** you can earn today and spend next month, because the dollars keep (most of) their value.","**Unit of account:** a salary, a rent and a sandwich are all measured in the same unit, so you can compare them instantly."],"ordered":false},
+{"t":"p","text":"Notice what is missing: modern dollars are not backed by gold. The US left the gold standard in 1971. Today’s dollar is _fiat money_: it has value because the government accepts it for taxes, the law requires it for debts, and millions of people trust it."},
+{"t":"term","word":"Fiat money","def":"Money that has value because a government declares it legal tender and people trust it, not because it can be swapped for gold."},
+{"t":"h","text":"The slow leak: inflation"},
+{"t":"p","text":"Money is a good store of value, but not a perfect one. Most years, prices rise a little. That is _inflation_, and it means each dollar buys slightly less than before. The Federal Reserve, the US central bank, aims for about 2% a year, but some years run much hotter."},
+{"t":"key","text":"Inflation does not take dollars from your account; it quietly shrinks what each dollar can buy."},
+{"t":"p","text":"A small leak adds up. At 3% inflation, something that costs $100 today will cost about $134 in ten years. Put the other way, $100 kept in a drawer buys only about $74 of today’s stuff after a decade."},
+{"t":"fig","kind":"line","series":[{"name":"Buying power of $100","points":[100,86.26,74.41,64.19,55.37,47.76,41.2]}],"xLabels":["Now","5y","10y","15y","20y","25y","30y"],"unit":"$","caption":"At 3% inflation, $100 of cash loses more than half its buying power in 30 years."},
+{"t":"example","title":"Your coffee in 24 years","text":"Today a latte costs $3.50.\nAt 3% inflation for 24 years: $3.50 × 1.03²⁴ ≈ $3.50 × 2.03 ≈ $7.11.\nSame cup, double the price. Your cash stayed the same; the price moved.\nThat is why long-term savings need to earn at least the inflation rate just to stand still."},
+{"t":"check","q":"Your boss gives you a 2% raise in a year when prices rise 4%. Are you richer or poorer?","a":"Poorer. Your paycheck grew 2%, but what it buys shrank 4%, so your real buying power fell by about 2%."},
+{"t":"h","text":"Where inflation comes from"},
+{"t":"p","text":"Prices rise when spending grows faster than the stuff available to buy. More money chasing the same goods, higher costs for energy or wages, or supply shocks like a pandemic can all push prices up. The government tracks this with the _Consumer Price Index_ (CPI), a basket of everyday items like rent, food and fuel."},
+{"t":"p","text":"A little inflation is normal and even healthy: it nudges people to spend and invest rather than hoard cash. Very high inflation, like Germany in 1923 or Venezuela in the 2010s, destroys savings and trust. In Italy, many still remember the lira losing value through the 1970s and 1980s before the euro arrived."},
+{"t":"warn","text":"Keeping large savings in cash “to be safe” feels safe but slowly loses value. Cash is perfect for short-term needs, not for money you won’t touch for ten years."},
+{"t":"tip","text":"Look up the price you paid for one thing you buy often (rent, a metro ride, a coffee) five years ago. Compare it with today. That gap is inflation you have lived."}
+],
+"takeaways":["Money is a tool for trade, saving and measuring prices, built on shared trust.","Inflation shrinks what each dollar buys; at 3% a year prices double in about 24 years.","Cash is great for short-term needs, but long-term money must grow faster than inflation."],
+"quiz":[
+{"q":"Which job of money lets you compare a $2,400 rent with a $60,000 salary?","options":["Medium of exchange","Unit of account","Store of value","Legal tender"],"answer":1,"why":"Unit of account means everything is priced in the same unit, so different things can be compared directly."},
+{"q":"With 3% yearly inflation, roughly what will $100 of cash buy after 10 years, in today’s prices?","options":["$97","$134","$74","$50"],"answer":2,"why":"$100 ÷ 1.03¹⁰ ≈ $74. The bill still says 100, but it buys about a quarter less."},
+{"q":"Why does a modern US dollar have value?","options":["It can be exchanged for gold at the Fed","People trust it and the government requires it for taxes and debts","Its paper and ink are expensive","Banks guarantee a fixed price for it"],"answer":1,"why":"The dollar is fiat money: its value rests on law and trust, not on gold, since the US left the gold standard in 1971."}
+]
+},
+{
+"id":"fin-1-02","subject":"finance","level":1,"order":2,"type":"short","minutes":5,
+"title":"Income, expenses and the budget",
+"hook":"Payday feels rich, day 25 feels broke. A simple plan fixes the gap between them.",
+"tags":["budget","cash flow","50/30/20","savings","paycheck","expenses"],
+"blocks":[
+{"t":"p","text":"Payday. Your account jumps by $4,800 and life feels easy. Then rent leaves, a few dinners, a flight home, and by the 25th you check your balance before buying groceries. Nothing dramatic happened. You just had no plan for the money before it arrived."},
+{"t":"h","text":"Money in, money out"},
+{"t":"p","text":"Personal finance starts with one simple picture: _cash flow_. Money flows in (salary, freelance, side income) and flows out (rent, food, transport, fun). If more comes in than goes out, you build wealth. If more goes out, you build debt. Everything else is detail."},
+{"t":"fig","kind":"equation","parts":["Income","−","Expenses","=","Cash flow"],"caption":"Positive cash flow is the engine of every financial goal."},
+{"t":"p","text":"Use your _take-home pay_, the amount that actually lands in your account after taxes, health insurance and retirement deductions. A $75,000 salary might arrive as about $4,800 a month. Budgeting from the bigger number is the classic beginner mistake."},
+{"t":"term","word":"Budget","def":"A plan that gives every dollar of income a job before the month starts: spend it, save it, or pay down debt with it."},
+{"t":"h","text":"The 50/30/20 rule"},
+{"t":"p","text":"A popular starting point, made famous by US Senator Elizabeth Warren and her daughter in their book _All Your Worth_, splits take-home pay into three buckets."},
+{"t":"list","items":["**50% Needs:** rent, utilities, groceries, insurance, transport, minimum debt payments.","**30% Wants:** restaurants, travel, clothes beyond basics, streaming, hobbies.","**20% Savings and debt:** emergency fund, retirement, investing, extra debt payments."],"ordered":false},
+{"t":"fig","kind":"donut","data":[{"label":"Needs","value":2400},{"label":"Wants","value":1440},{"label":"Save & debt","value":960}],"center":"$4,800","caption":"The 50/30/20 split on a $4,800 monthly take-home pay."},
+{"t":"example","title":"Sofia in Brooklyn","text":"Sofia takes home $4,800 a month.\nNeeds 50%: $2,400. Her rent alone is $2,000, plus $400 for utilities, groceries and the metro card. Exactly on the limit.\nWants 30%: $1,440 for dinners, gym and travel.\nSave 20%: $960. In one year that is $11,520 put to work.\nIf her rent rises to $2,300, she must take the extra $300 from wants, not from savings."},
+{"t":"p","text":"In expensive cities like New York or Miami, needs often hit 55 or 60%. That is fine. The rule is a compass, not a law. What matters is that savings get a fixed share and never become “whatever is left”."},
+{"t":"h","text":"Pay yourself first"},
+{"t":"p","text":"Here is the trick that makes budgets actually work. Most people spend first and save what remains. Usually, nothing remains. Flip the order: the day your salary arrives, an automatic transfer moves your savings out before you can see it."},
+{"t":"fig","kind":"flow","steps":[{"label":"Paycheck","icon":"💵","note":"$4,800 lands"},{"label":"Auto-save","icon":"🏦","note":"$960 moves out"},{"label":"Bills","icon":"🧾","note":"Rent, utilities"},{"label":"Spend freely","icon":"🛍️","note":"Guilt-free"}],"caption":"Save first, pay bills second, then spend what is left without guilt."},
+{"t":"key","text":"Decide your savings before the month begins and automate them, so saving needs no willpower."},
+{"t":"p","text":"Automation beats discipline because it removes the daily decision. You adapt to the money in your checking account, the same way you adapted to your salary after taxes. Most people never miss money they never saw."},
+{"t":"check","q":"Marco takes home $3,600 and saves “what’s left” each month, usually around $100. What would 20% paid first give him per year?","a":"20% of $3,600 is $720 a month, or $8,640 a year, compared with about $1,200 a year when saving leftovers."},
+{"t":"warn","text":"Don’t forget irregular costs: annual subscriptions, car insurance, holidays, gifts. Add them up for the year, divide by 12, and set that amount aside monthly so they never surprise you."},
+{"t":"tip","text":"Open your banking app today and set an automatic transfer to savings for the day after payday. Start with 10% if 20% feels like too much, and raise it 1% every few months."}
+],
+"takeaways":["Budget from take-home pay, not salary; cash flow is income minus expenses.","50/30/20 is a flexible guide: 50% needs, 30% wants, 20% savings and debt.","Pay yourself first with automatic transfers so saving does not depend on willpower."],
+"quiz":[
+{"q":"Lena takes home $5,000 a month. Under 50/30/20, how much goes to savings and debt?","options":["$1,500","$2,500","$500","$1,000"],"answer":3,"why":"20% of $5,000 is $1,000. Needs get $2,500 and wants get $1,500."},
+{"q":"Which item belongs in “needs”?","options":["A minimum loan payment","A weekend trip","A streaming service","Restaurant dinners"],"answer":0,"why":"Minimum debt payments are obligations; skipping them causes fees and credit damage, so they count as needs."},
+{"q":"What does “pay yourself first” mean?","options":["Spend on yourself before paying bills","Move savings out automatically as soon as income arrives","Ask for a raise before taking a job","Pay off debt before saving anything"],"answer":1,"why":"Savings are treated like the first bill of the month, automated on payday, so they happen before spending."}
+]
+},
+{
+"id":"fin-1-03","subject":"finance","level":1,"order":3,"type":"short","minutes":5,
+"title":"Compound interest",
+"hook":"Two friends invest the same way. One starts at 25, one at 35. The early one wins with a third of the money.",
+"tags":["compound interest","rule of 72","savings","retirement","interest rates","investing"],
+"blocks":[
+{"t":"p","text":"Picture a snowball rolling down a hill. At first it is tiny and picks up a little snow. But the bigger it gets, the more snow it grabs with every turn. Money that earns interest behaves exactly like that snowball, and the hill is time."},
+{"t":"h","text":"Interest on interest"},
+{"t":"p","text":"_Simple interest_ pays you only on what you put in. _Compound interest_ pays you on what you put in **plus** the interest you already earned. The difference looks tiny in year one and enormous in year thirty."},
+{"t":"example","title":"$10,000 at 7% a year","text":"Year 1: $10,000 × 7% = $700. Balance $10,700.\nYear 2: $10,700 × 7% = $749. Balance $11,449.\nThe extra $49 is interest earned on last year’s interest.\nAfter 10 years: $10,000 × 1.07¹⁰ ≈ $19,672.\nWith simple interest you would have only $17,000."},
+{"t":"fig","kind":"bars","data":[{"label":"Simple, 30 yrs","value":31000},{"label":"Compound, 30 yrs","value":76123,"highlight":true}],"unit":"$","caption":"$10,000 at 7% for 30 years: simple interest vs compound interest."},
+{"t":"p","text":"Same money, same rate, same years. Compounding alone more than doubles the result, because in the later years the interest is being earned on a much bigger pile."},
+{"t":"term","word":"Compounding","def":"Earning returns on your past returns, so growth speeds up over time. Formula: future value = amount × (1 + rate) raised to the number of years."},
+{"t":"h","text":"The Rule of 72"},
+{"t":"p","text":"You don’t need a calculator to feel compounding. Divide 72 by the yearly rate, and you get roughly how many years it takes money to double."},
+{"t":"fig","kind":"equation","parts":["72","÷","Rate %","≈","Years to double"],"caption":"At 8% a year, money doubles in about 72 ÷ 8 = 9 years."},
+{"t":"list","items":["At 6%: about 12 years to double.","At 9%: about 8 years.","At 12%: about 6 years.","It works for debt too: a card at 24% doubles what you owe in about 3 years if unpaid."],"ordered":false},
+{"t":"h","text":"Why starting early beats investing more"},
+{"t":"p","text":"Meet Anna and Ben. Both earn 7% a year on average (an illustrative number, not a promise). Anna invests $200 a month from age 25 to 35, then stops completely. Ben waits, then invests $200 a month from 35 all the way to 65."},
+{"t":"fig","kind":"line","series":[{"name":"Anna (25 to 35)","points":[0,14768,35481,49763,69796,97892,137299,192569,270088]},{"name":"Ben (35 to 65)","points":[0,0,0,14768,35481,64531,105276,162424,242575]}],"xLabels":["25","30","35","40","45","50","55","60","65"],"unit":"$","caption":"Anna invests for 10 years and stops; Ben invests for 30 years. At 65 Anna still has more."},
+{"t":"example","title":"The final score at 65","text":"Anna put in $200 × 12 × 10 = $24,000. At 65 she has about $270,000.\nBen put in $200 × 12 × 30 = $72,000. At 65 he has about $243,000.\nBen invested three times more money and still ends up behind, because Anna’s money had ten extra years to snowball."},
+{"t":"key","text":"In compounding, time matters more than amount: the earliest dollars grow the most."},
+{"t":"h","text":"The three levers"},
+{"t":"p","text":"Every compounding result depends on three things: how much you put in, the rate you earn, and how long you leave it. You control the amount a little, the rate only partly (markets decide), but time is fully yours. That is why the single best move is simply to start, even with a small amount, and to never interrupt the snowball by pulling money out early."},
+{"t":"check","q":"Using the Rule of 72, how long does it take $5,000 to become $20,000 at 6% a year?","a":"At 6% money doubles in about 12 years. $5,000 → $10,000 in 12 years, → $20,000 in 24 years."},
+{"t":"warn","text":"Fees and inflation compound too, in the wrong direction. A 1% yearly fee or 3% inflation quietly eats into the snowball every single year."},
+{"t":"tip","text":"Pick a number of years until a goal and your expected rate, then do the Rule of 72 in your head. Seeing how many doublings you have left is the best motivation to start this month, not next year."}
+],
+"takeaways":["Compound interest pays interest on interest, so growth speeds up over time.","Rule of 72: divide 72 by the rate to estimate the years needed to double.","Starting early beats investing more later; the first dollars have the most time to grow."],
+"quiz":[
+{"q":"$1,000 earns 10% a year, compounded yearly. What is the balance after 2 years?","options":["$1,200","$1,210","$1,100","$1,221"],"answer":1,"why":"Year 1: $1,100. Year 2: $1,100 × 1.10 = $1,210. The extra $10 versus simple interest is interest on interest."},
+{"q":"Roughly how long does money take to double at 9% a year?","options":["8 years","9 years","12 years","4.5 years"],"answer":0,"why":"Rule of 72: 72 ÷ 9 = 8 years."},
+{"q":"Why does Anna (10 years of saving, starting at 25) beat Ben (30 years, starting at 35)?","options":["She earned a higher rate","She invested more money","Her early money compounded for more years","Ben paid more taxes"],"answer":2,"why":"Both earned the same rate. Anna’s dollars simply had a longer runway to compound, which outweighed Ben’s larger total."}
+]
+},
+{
+"id":"fin-1-04","subject":"finance","level":1,"order":4,"type":"short","minutes":5,
+"title":"Debt: good, bad and expensive",
+"hook":"Paying only the minimum on a $5,000 card can take almost 20 years and cost $8,900 in interest.",
+"tags":["debt","credit card","apr","minimum payment","avalanche","snowball","loans"],
+"blocks":[
+{"t":"p","text":"The statement arrives: balance $5,000, minimum payment due $150. Paying $150 feels responsible. The bank is happy too, and that should make you suspicious. Today you’ll see why, and how to get out of debt the smart way."},
+{"t":"h","text":"Not all debt is equal"},
+{"t":"p","text":"Debt is borrowing from your future self. It can be a useful tool or a heavy anchor. Ask two questions: does it buy something that grows in value or raises my income, and how much does it cost?"},
+{"t":"fig","kind":"spectrum","left":"Often useful","right":"Very expensive","items":[{"label":"Mortgage","pos":12},{"label":"Student loan","pos":28},{"label":"Car loan","pos":45},{"label":"Buy now pay later","pos":62},{"label":"Credit card","pos":82},{"label":"Payday loan","pos":97}],"caption":"Cheaper debt that builds value sits left; costly consumer debt sits right."},
+{"t":"list","items":["**Good debt (usually):** a reasonable mortgage, or education that raises your earning power, at a moderate rate.","**Bad debt:** borrowing for things that lose value fast, like a car you can’t afford or last year’s vacation.","**Expensive debt:** credit cards and payday loans, where rates of 20% to 400% turn small balances into big ones."],"ordered":false},
+{"t":"term","word":"APR","def":"Annual Percentage Rate: the yearly cost of borrowing, including interest and some fees. A 24% APR card charges about 2% per month."},
+{"t":"h","text":"The minimum-payment trap"},
+{"t":"p","text":"Card issuers set the minimum low on purpose, often the month’s interest plus 1% of the balance. Most of each payment covers interest, so the balance barely moves, and the payment shrinks as the balance shrinks, which stretches the loan for years."},
+{"t":"example","title":"$5,000 at 24% APR","text":"Month 1 interest: $5,000 × 2% = $100. Minimum: $100 + 1% of $5,000 ($50) = $150.\nOnly $50 actually reduces your debt.\nPaying only the minimum every month (with the usual $25 floor): about 234 months (19.5 years) and $8,887 in interest.\nPaying a fixed $250 every month: 26 months and $1,449 in interest."},
+{"t":"fig","kind":"bars","data":[{"label":"Minimum only","value":8887},{"label":"Fixed $250/mo","value":1449,"highlight":true}],"unit":"$","caption":"Total interest paid on the same $5,000 card balance."},
+{"t":"key","text":"Paying a fixed amount above the minimum is the fastest way to escape expensive debt."},
+{"t":"h","text":"Two ways to pay off several debts"},
+{"t":"p","text":"Make every minimum payment, then send all extra money to one debt at a time. The only question is which one goes first."},
+{"t":"fig","kind":"compare","left":{"title":"Avalanche","icon":"🏔️","items":["Highest APR first","Saves the most interest","Needs patience"]},"right":{"title":"Snowball","icon":"⛄","items":["Smallest balance first","Quick early wins","Costs a bit more"]},"caption":"Avalanche wins on math; snowball wins on motivation."},
+{"t":"example","title":"Jordan’s three debts, $600 a month","text":"Store card $800 at 18%, credit card $5,000 at 25%, car loan $7,000 at 6%.\nSnowball (smallest first): store card gone in month 3, everything paid in 25 months, about $1,733 interest.\nAvalanche (highest rate first): credit card gone in month 16, everything paid in 25 months, about $1,659 interest.\nAvalanche saves $74, but snowball gives a win in just 3 months."},
+{"t":"p","text":"One more trap: 0% promotional offers. A balance transfer card at 0% for 15 months can be a great tool, but read the fine print. A transfer fee of 3% to 5% is common, and any balance left when the promo ends jumps to the regular APR. Use it only with a plan to clear the balance in time."},
+{"t":"p","text":"The gap grows when rates differ a lot and balances are large. If you need early wins to stay on track, snowball is a fine choice. The best plan is the one you will actually follow."},
+{"t":"check","q":"You have a $3,000 card at 27% and a $1,000 card at 15%. Which gets your extra money under the avalanche method?","a":"The $3,000 card at 27%, because avalanche always targets the highest APR first, regardless of balance."},
+{"t":"tip","text":"List every debt with its balance, APR and minimum. Pick avalanche or snowball, and set one automatic extra payment toward your target debt this week."}
+],
+"takeaways":["Judge debt by its cost (APR) and whether it buys something that grows in value.","Minimum payments keep you in debt for years; a fixed higher payment saves thousands.","Avalanche (highest APR first) saves most; snowball (smallest first) builds momentum."],
+"quiz":[
+{"q":"A card has an 18% APR. Roughly what interest rate does it charge per month?","options":["18%","1.5%","0.18%","6%"],"answer":1,"why":"Divide the APR by 12 months: 18% ÷ 12 = 1.5% per month."},
+{"q":"Why does paying only the minimum keep people in debt so long?","options":["Minimums are mostly interest, so the balance shrinks very slowly","Banks add a penalty each month","The APR rises with each payment","Minimums don’t count toward the balance"],"answer":0,"why":"Most of a minimum payment covers interest, and the required payment drops as the balance drops, stretching repayment for years."},
+{"q":"Under the snowball method, which debt do you attack first?","options":["The highest APR","The newest loan","The smallest balance","The largest balance"],"answer":2,"why":"Snowball targets the smallest balance first for a quick win, then rolls that payment into the next debt."}
+]
+},
+{
+"id":"fin-1-05","subject":"finance","level":1,"order":5,"type":"short","minutes":5,
+"title":"The emergency fund",
+"hook":"The boiler breaks, the job ends, the dentist calls. A cash cushion turns a crisis into an inconvenience.",
+"tags":["emergency fund","savings","high-yield savings","insurance","fdic","financial safety"],
+"blocks":[
+{"t":"p","text":"Your phone buzzes on the train: the landlord says the building needs repairs and your car needs a $1,200 fix the same week. For some people that message ruins a month. For others it is a shrug. The difference is not salary. It is an emergency fund."},
+{"t":"h","text":"What it is for"},
+{"t":"p","text":"An emergency fund is cash set aside only for real surprises: job loss, a medical bill, an urgent repair, a last-minute flight to family. It is not for vacations or sales. Its job is to stop a bad week from becoming expensive debt."},
+{"t":"fig","kind":"flow","steps":[{"label":"Surprise bill","icon":"⚡","note":"$1,200 repair"},{"label":"Emergency fund","icon":"🛟","note":"Pays it in cash"},{"label":"Refill","icon":"🔁","note":"Rebuild monthly"},{"label":"No new debt","icon":"✅","note":"Plan stays on track"}],"caption":"With a fund, a shock is absorbed and refilled instead of landing on a credit card."},
+{"t":"h","text":"How much: 3 to 6 months"},
+{"t":"p","text":"The classic target is 3 to 6 months of **essential** expenses: rent, utilities, food, insurance, transport and minimum debt payments. Not your full spending, because in a crisis you would cut restaurants and travel."},
+{"t":"list","items":["**Closer to 3 months:** stable job, two incomes in the household, skills in high demand.","**Closer to 6 months or more:** single income, freelance or commission pay, children, or a specialized job that takes longer to replace."],"ordered":false},
+{"t":"example","title":"Priya’s target","text":"Essential monthly costs: rent $2,000 + utilities $150 + groceries $500 + insurance $250 + metro $130 + loan minimum $170 = $3,200.\n3 months: $3,200 × 3 = $9,600.\n6 months: $3,200 × 6 = $19,200.\nSaving $400 a month, she reaches 3 months in 24 months ($9,600 ÷ $400)."},
+{"t":"key","text":"An emergency fund is insurance you pay to yourself: it keeps one bad month from becoming years of debt."},
+{"t":"p","text":"If the full amount looks huge, start with a mini-goal of $1,000. That alone covers most car repairs and medical copays. Then build toward one month, then three."},
+{"t":"h","text":"Where to keep it"},
+{"t":"p","text":"The fund must be **safe** and **available within a day or two**. Growth is a bonus, not the goal. That rules out stocks, which can drop 30% exactly when the economy is weak and you lose your job."},
+{"t":"fig","kind":"spectrum","left":"Instant but earns little","right":"Grows more but can fall","items":[{"label":"Checking","pos":5},{"label":"High-yield savings","pos":25},{"label":"Money market","pos":35},{"label":"Short T-bills","pos":45},{"label":"Stocks","pos":90}],"caption":"The sweet spot for an emergency fund sits on the left half."},
+{"t":"p","text":"A _high-yield savings account_ (HYSA), often at an online bank, is the usual home. It is FDIC insured up to the legal limit per depositor per bank, and it typically pays far more than a traditional branch account. Rates change with the economy, so compare a few banks."},
+{"t":"fig","kind":"bars","data":[{"label":"Old savings 0.01%","value":1.5},{"label":"HYSA at 4%","value":600,"highlight":true}],"unit":"$","caption":"Yearly interest on a $15,000 fund at illustrative rates."},
+{"t":"check","q":"Why not keep the emergency fund in your checking account?","a":"It earns almost nothing, and mixing it with daily spending makes it easy to use for non-emergencies. A separate HYSA keeps it visible, safe and earning."},
+{"t":"h","text":"Insurance: the second safety net"},
+{"t":"p","text":"Cash covers small and medium shocks. Insurance covers the giant ones that no fund could handle: a hospital stay, a lawsuit, a fire. Health insurance, renters or homeowners insurance, auto, disability (it replaces income if you can’t work) and term life if others depend on you."},
+{"t":"warn","text":"A higher insurance deductible lowers your premium, but only choose it if your emergency fund can cover that deductible tomorrow."},
+{"t":"tip","text":"Open a separate high-yield savings account today, name it “Emergency only”, and set an automatic transfer for the day after payday, even if it is just $50."}
+],
+"takeaways":["Save 3 to 6 months of essential expenses; start with a $1,000 mini-goal.","Keep it safe and liquid, typically in an FDIC-insured high-yield savings account.","Insurance protects against the big disasters cash alone can’t cover."],
+"quiz":[
+{"q":"Diego’s essential expenses are $2,800 a month. What is a 6-month emergency fund?","options":["$8,400","$14,000","$16,800","$28,000"],"answer":2,"why":"$2,800 × 6 = $16,800. A 3-month fund would be $8,400."},
+{"q":"Which is the best place for an emergency fund?","options":["An index fund","A high-yield savings account","Cash under the mattress","A 5-year CD with penalties"],"answer":1,"why":"An HYSA is insured, available within a day or two, and pays interest. Stocks can fall right when you need the money."},
+{"q":"Who should aim closer to 6 months or more?","options":["A freelancer with irregular income","A dual-income couple with stable jobs","Someone with no expenses","A retiree with a pension covering all costs"],"answer":0,"why":"Irregular or single income makes a long gap without pay more likely, so a bigger cushion is wise."}
+]
+}
+]});

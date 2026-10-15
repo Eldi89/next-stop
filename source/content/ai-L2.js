@@ -1,0 +1,140 @@
+LEARN.add({"subject":"ai","lessons":[
+{
+"id":"ai-2-01",
+"subject":"ai",
+"level":2,
+"order":7,
+"type":"short",
+"minutes":5,
+"title":"Advanced prompting",
+"hook":"Show one example, ask for a plan first, make it grade its own work: three moves that change the output.",
+"tags":["prompting","few-shot","examples","constraints","iteration","self-critique"],
+"blocks":[
+{"t":"p","text":"You already know the basics: context, task, format. Now think about how you train a new junior. You do not just describe the work. You show a finished example, you agree on the approach before they start, and you ask them to check their own work before it lands on your desk. The same moves work on AI."},
+{"t":"h","text":"Six moves of a skilled prompter"},
+{"t":"fig","kind":"grid","items":[{"icon":"🧾","label":"Show examples","note":"One good sample"},{"icon":"🗺️","label":"Plan first","note":"Outline, then write"},{"icon":"🎭","label":"Give a role","note":"Who should it be?"},{"icon":"📏","label":"Set constraints","note":"Limits and musts"},{"icon":"🔁","label":"Iterate","note":"Refine in steps"},{"icon":"🔍","label":"Self-critique","note":"Review its own draft"}],"caption":"Six moves that turn a decent answer into a great one."},
+{"t":"h","text":"1. Show, don’t just tell"},
+{"t":"p","text":"Describing a style is hard. Showing it is easy. Paste one or two examples of the output you like, and the AI will copy the pattern: length, tone, structure. This is called **few-shot prompting**."},
+{"t":"fig","kind":"chat","messages":[{"role":"you","text":"Write variance comments in this style.\nExample: “Rent +$4K vs budget: new storage unit from March, recurring. No action.”\nNow do: Travel, $12K actual vs $7K budget, two unplanned client visits to Chicago in May."},{"role":"ai","text":"Travel +$5K vs budget: two unplanned client visits to Chicago in May, one-off. Monitor June."}],"caption":"One example teaches the format better than a paragraph of rules."},
+{"t":"h","text":"2. Ask for a plan first"},
+{"t":"p","text":"For anything longer than an email, ask: “Before writing, give me an outline and tell me what you will need from me.” You fix the direction in ten seconds instead of rewriting two pages. It also tends to improve the reasoning, because the model lays out the steps before it commits to an answer."},
+{"t":"h","text":"3 and 4. Roles and constraints"},
+{"t":"p","text":"A role sets the point of view: “You are a skeptical audit senior reviewing this memo.” Constraints set the fence: word limits, what to exclude, what must appear. Clear constraints beat vague adjectives. “Under 150 words, no jargon, include the dollar impact” is far stronger than “make it concise and professional”."},
+{"t":"key","text":"Treat AI like a talented new hire: show an example, agree on the plan, set clear limits, then ask it to check its own work."},
+{"t":"h","text":"5 and 6. Iterate and self-critique"},
+{"t":"fig","kind":"cycle","steps":["Draft","Critique","Revise","Check vs. rules"],"center":"Better output","caption":"A short loop beats one giant prompt."},
+{"t":"example","title":"A memo in three passes","text":"Pass 1: “You are a technical accounting manager. Outline a 1-page memo on whether our client’s software implementation costs should be capitalized. List the facts you need from me.”\nThe AI asks for project stage, contract terms and costs by category.\n\nPass 2: you supply facts (say $90K total: $60K configuration, $30K training) and it drafts.\n\nPass 3: “Now act as a skeptical reviewer. List the 3 weakest points of this memo and fix them.” It notices that training costs are usually expensed, not capitalized, and moves the $30K out."},
+{"t":"check","q":"Why does asking the AI to critique its own draft help, if the same model wrote it?","a":"Reviewing is a different task from writing. When asked to look for weaknesses against clear criteria, the model often spots gaps it skipped while drafting. It is not perfect, so you still do the final review."},
+{"t":"warn","text":"Do not stack twenty instructions in one prompt and hope. Long lists of rules get partly ignored. Put the critical rules first, keep them few, and use follow-ups for the rest."},
+{"t":"tip","text":"Save one great example of your own work, like a variance comment or a client email, and paste it into your next prompt with “match this style”."}
+],
+"takeaways":["Examples teach style and format faster than any description.","Ask for a plan or outline first on anything longer than an email.","Use roles, clear constraints and a self-critique pass, then review it yourself."],
+"quiz":[
+{"q":"What is few-shot prompting?","options":["Asking the same question several times","Including one or more examples of the output you want","Keeping prompts under a few words","Using several AI tools at once"],"answer":1,"why":"Few-shot means giving examples so the model copies their pattern of tone, length and structure."},
+{"q":"Which constraint is most useful?","options":["Make it professional","Make it better","Make it nice and short","Under 150 words, no jargon, include the dollar impact"],"answer":3,"why":"Specific, checkable limits guide the model far better than vague adjectives."},
+{"q":"Before a long memo, why ask the AI for an outline first?","options":["You can fix the direction cheaply before it writes everything","It makes the AI work offline","It removes the need to review","Outlines are always more accurate than full drafts"],"answer":0,"why":"Correcting a plan takes seconds; rewriting a full draft takes much longer."}
+]
+},
+{
+"id":"ai-2-02",
+"subject":"ai",
+"level":2,
+"order":8,
+"type":"short",
+"minutes":5,
+"title":"AI for analysis",
+"hook":"AI can write the formula, explain the variance and spot the outlier. It should never be the last word on a total.",
+"tags":["data analysis","spreadsheets","excel formulas","verification","reconciliation","variance"],
+"blocks":[
+{"t":"p","text":"It is the second day of the close. You have a 2,000-row bank export, a GL detail and one stubborn $1,140 difference. AI can be a brilliant analysis partner here, as long as you remember who is the analyst. The AI suggests and explains. The spreadsheet calculates. You verify."},
+{"t":"h","text":"Three jobs AI does well with data"},
+{"t":"list","items":["**Formulas and scripts**: describe what you want in plain English, get the formula or a small script.","**Explaining**: paste a formula someone else built and ask what it does, line by line.","**Hypotheses**: describe a pattern and ask for likely causes to test, ranked by likelihood."],"ordered":false},
+{"t":"fig","kind":"chat","messages":[{"role":"you","text":"Excel: Sheet Bank has dates in A, amounts in B. Sheet GL has amounts in D. I need a column in Bank that says “Match” if the same amount exists in GL, otherwise “Check”."},{"role":"ai","text":"In C2: =IF(COUNTIF(GL!D:D,B2)>0,\"Match\",\"Check\")\nFill down. Note: this matches on amount only, so two different $500 items could look like a match. Add the date if you need stricter matching."}],"caption":"Ask for the formula, and read the caveat it gives you."},
+{"t":"key","text":"Let AI write the method, let the software do the math, and let your own checks decide whether the answer is true."},
+{"t":"h","text":"Where tools that run code help"},
+{"t":"p","text":"Some assistants can upload a file and run real code on it. That is a big step up: the totals come from actual computation, not word prediction. But two risks remain. The AI may read a column wrongly, for example treating credits as debits, and it may quietly skip rows it could not parse. A correct calculation on the wrong data is still wrong."},
+{"t":"fig","kind":"flow","steps":[{"label":"Describe goal","icon":"🎯"},{"label":"AI gives method","icon":"🧮"},{"label":"Run in Excel","icon":"📊"},{"label":"Tie out totals","icon":"✅"},{"label":"Explain result","icon":"🗣️"}],"caption":"A safe loop for AI-assisted analysis."},
+{"t":"h","text":"Tie-out habits"},
+{"t":"fig","kind":"table","head":["Check","How"],"rows":[["Row count","Rows in = rows used"],["Control total","Sum matches source"],["Spot test","Recalc 3 items by hand"],["Sign check","Debits and credits right way"],["Reasonable?","Compare to last month"]],"caption":"Five quick checks before you trust any AI-assisted number."},
+{"t":"example","title":"The $1,140 difference","text":"You paste 40 anonymized unmatched items (dates, amounts, short descriptions) and ask: “Which combinations could explain a $1,140 difference? Show your working.”\nThe AI spots that $760 + $380 = $1,140, two card deposits recorded in the GL on the 31st but cleared by the bank on the 2nd: a classic timing difference.\nYou then check both items against the bank statement. They tie. The reconciling item goes on the rec with your initials, not the AI’s."},
+{"t":"check","q":"An AI tool reads your file and reports total revenue of $2.41M. Your trial balance says $2.47M. What do you check first?","a":"Whether it used all the rows and the right columns. A gap like this usually means skipped rows, a filtered range, or a column misread. Compare row counts and control totals before anything else."},
+{"t":"warn","text":"Never paste an AI total into a workpaper or a client email without tying it to the source. “The AI said so” is not audit evidence."},
+{"t":"p","text":"One more habit: ask the AI to state its assumptions. “Before you analyze, tell me how you are reading each column.” It takes a few seconds and catches most misreadings early. If it says “column B is the debit amount” and column B holds credits, you just saved yourself an hour of chasing a wrong answer."},
+{"t":"tip","text":"Next time you need a tricky formula, describe it to AI in one sentence, then test the result on three rows you have checked by hand."}
+],
+"takeaways":["Use AI for formulas, explanations and hypotheses about your data.","Even when AI runs real code, it can misread columns or skip rows.","Tie out every AI-assisted number: row counts, control totals, spot tests."],
+"quiz":[
+{"q":"What is the best division of labor in AI-assisted analysis?","options":["AI calculates, you trust the result","AI suggests the method, software calculates, you verify","You calculate, AI signs off","AI and you each calculate and average the results"],"answer":1,"why":"AI is strong at methods and explanations; software does exact math; you are responsible for verifying."},
+{"q":"An AI tool ran real code on your file. What risk remains?","options":["It may have misread columns or skipped rows","None, code is always right","The math will be approximate","The file will be deleted"],"answer":0,"why":"Correct computation on misread or incomplete data still produces a wrong answer."},
+{"q":"Which check most quickly reveals that rows were skipped?","options":["Asking the AI if it is confident","Rerunning the same prompt","Making the chart bigger","Comparing row counts and control totals to the source"],"answer":3,"why":"Row counts and control totals directly test completeness against the source."}
+]
+},
+{
+"id":"ai-2-03",
+"subject":"ai",
+"level":2,
+"order":9,
+"type":"short",
+"minutes":5,
+"title":"Learning anything faster with AI",
+"hook":"The best tutor asks you questions. With one prompt, AI can become that tutor on any topic, at your pace.",
+"tags":["learning","tutor","socratic method","quiz","spaced repetition","study"],
+"blocks":[
+{"t":"p","text":"You need to understand deferred taxes before a client meeting next week, or finally get comfortable with the government accounting topics on the CPA exam. You could read 40 pages. Or you could spend 20 minutes a day with a patient tutor who adapts to you, never sighs, and is available on the 7:52 train."},
+{"t":"h","text":"From answer machine to tutor"},
+{"t":"p","text":"By default, AI hands you answers. That feels productive, but reading an answer is not the same as learning it. Research on learning keeps finding the same thing: we remember what we **retrieve and explain**, not what we only read. So switch the AI from answering to asking."},
+{"t":"fig","kind":"compare","left":{"title":"Answer mode","icon":"📖","items":["You read","Feels easy","Forgotten by Friday"]},"right":{"title":"Tutor mode","icon":"🧑‍🏫","items":["You answer and explain","Feels harder","Sticks for months"]},"caption":"The effort of answering is what builds memory."},
+{"t":"key","text":"Ask AI to question you, not just to explain: learning happens when you have to pull the answer out of your own head."},
+{"t":"h","text":"Four tutor prompts"},
+{"t":"list","items":["**Explain like I’m new**: “Explain X to a smart person new to the topic, with one everyday analogy and one example with numbers.”","**Socratic mode**: “Don’t give me the answer. Ask me one question at a time until I can explain X myself.”","**Quiz me**: “Give me 5 multiple-choice questions on X, one at a time, and explain my mistakes.”","**Teach it back**: “I’ll explain X in my own words. Find the gaps and errors.”"],"ordered":true},
+{"t":"fig","kind":"chat","messages":[{"role":"you","text":"Socratic mode, please. I want to understand why a deferred tax liability appears. Ask me one question at a time."},{"role":"ai","text":"Let’s start simple. A company buys a $100K machine. For the books it depreciates $20K this year; for taxes it deducts $40K. Which profit is higher this year, book or taxable?"},{"role":"you","text":"Book profit, because the tax deduction is bigger."},{"role":"ai","text":"Exactly. So the company pays less tax now than its book profit suggests. What do you think happens in later years, when the tax deductions run out first?"}],"caption":"The tutor leads; you do the thinking."},
+{"t":"h","text":"Make it stick with spacing"},
+{"t":"p","text":"Memory fades fast unless you revisit it. Short reviews spread over days beat one long session. Ask the AI to build a small review plan and a set of flashcards, then come back to them."},
+{"t":"fig","kind":"timeline","events":[{"when":"Day 1","label":"Learn + first quiz"},{"when":"Day 2","label":"5-min quiz"},{"when":"Day 4","label":"Teach it back"},{"when":"Day 8","label":"Mixed quiz"},{"when":"Day 20","label":"Final check"}],"caption":"Spaced reviews: short sessions, growing gaps."},
+{"t":"example","title":"A two-week sprint on lease accounting","text":"Day 1 prompt: “I’m an accountant comfortable with GAAP basics. Build me a 10-day plan, 15 minutes a day, to understand lessee accounting under ASC 842. Each day: one concept, one numeric example, three quiz questions.”\nEach morning on the train you open the chat, say “Day 4, go”, and answer the questions. Day 10: you explain the whole model aloud in two minutes. Total time: about 150 minutes, spread out, instead of one exhausting Saturday."},
+{"t":"check","q":"Why is “teach it back” so powerful as a learning method?","a":"Explaining forces you to retrieve and organize what you know, and it exposes the gaps. The AI then targets exactly those gaps instead of repeating what you already understand."},
+{"t":"warn","text":"A tutor can be wrong too. For exam prep or technical rules, check key points against the official standard or a trusted textbook, especially numbers and thresholds."},
+{"t":"tip","text":"Choose one topic you have been avoiding. Today, ask AI to quiz you with 3 questions on it, one at a time, before reading any explanation."}
+],
+"takeaways":["Switch AI from answer mode to tutor mode: let it question you.","Use explain-like-I’m-new, Socratic, quiz-me and teach-it-back prompts.","Spread short reviews over days, and check key rules against official sources."],
+"quiz":[
+{"q":"Which prompt best uses AI as a Socratic tutor?","options":["Explain deferred taxes in full detail","Write me a summary of deferred taxes","Don’t give me the answer; ask me one question at a time until I can explain it","List every rule about deferred taxes"],"answer":2,"why":"Socratic mode makes you do the thinking through guided questions, which builds understanding."},
+{"q":"Why does tutor mode beat reading answers for long-term memory?","options":["It is faster","Retrieving and explaining answers strengthens memory","It avoids all mistakes","It uses fewer words"],"answer":1,"why":"The effort of pulling information out of memory is what makes it stick."},
+{"q":"Giulia has 2 weeks to learn a new standard. Which plan fits the evidence best?","options":["Short daily sessions with quizzes, reviewed at growing gaps","One 4-hour session the night before","Reading the AI’s summary five times in one day","Asking the AI to memorize it for her"],"answer":0,"why":"Spaced, retrieval-based practice beats cramming for durable learning."}
+]
+},
+{
+"id":"ai-2-04",
+"subject":"ai",
+"level":2,
+"order":10,
+"type":"short",
+"minutes":5,
+"title":"Context is everything",
+"hook":"Stop re-explaining your job every time you open a chat. Give the AI a briefing it keeps.",
+"tags":["context","custom instructions","projects","memory","files","context window"],
+"blocks":[
+{"t":"p","text":"Every morning a new consultant arrives at your desk. Brilliant, but with total amnesia: no idea who your clients are, what your firm’s style is, or what you discussed yesterday. That is what a fresh AI chat is like. The fix is not a smarter AI. It is a better briefing."},
+{"t":"h","text":"The AI only knows what is in front of it"},
+{"t":"p","text":"A model answers based on its training plus whatever is in its **context**: your messages, attached files, and any saved instructions. Everything outside that window does not exist for it. The quality of the answer depends heavily on the quality of that context."},
+{"t":"term","word":"Context window","def":"The amount of text the model can consider at once: your conversation, files and instructions. Beyond that limit, older material may be dropped or summarized."},
+{"t":"fig","kind":"pyramid","levels":["This prompt","This chat’s history","Attached files","Saved instructions","General training"],"caption":"Layers of context, from the most specific to the most general."},
+{"t":"key","text":"Better context beats a better prompt: give the AI the background a new colleague would need, and keep it where it can be reused."},
+{"t":"h","text":"Four ways to give lasting context"},
+{"t":"list","items":["**Custom instructions**: a short note about you and your preferences that many tools apply to every chat.","**Projects or workspaces**: a folder where you keep related chats with shared files and instructions.","**Files**: a policy, a template, last year’s memo, so the AI works from your sources, not its guesses.","**Memory**: some tools can remember facts across chats; review what they store and correct it."],"ordered":false},
+{"t":"p","text":"Names and details differ between products, so check what your approved tool offers. The principle is the same everywhere: write the briefing once, reuse it often."},
+{"t":"fig","kind":"chat","messages":[{"role":"you","text":"Draft the monthly status note for the client."},{"role":"ai","text":"Thanks! Which client is this for, which items were completed this month, and what tone and length would you like?"}],"caption":"No context: the AI has to ask, or worse, guess."},
+{"t":"fig","kind":"chat","messages":[{"role":"you","text":"[Project: Client A monthly close. Files: close checklist, last 2 status notes. Instructions: bullet style, under 150 words, open with status, flag risks.]\nDraft this month’s status note. Done: bank recs, AP accruals. Open: intercompany confirmation from the parent."},{"role":"ai","text":"Status: on track for close by the 8th.\n• Completed: bank reconciliations, AP accruals\n• Open: intercompany confirmation (awaiting parent)\n• Risk: if not received by the 6th, close may slip 2 days"}],"caption":"Same request, with a reusable briefing behind it."},
+{"t":"example","title":"A briefing worth writing once","text":"“I’m a senior accountant at a CPA firm. Clients are mostly US subsidiaries of European groups. I write to CFOs and controllers: concise, warm, no jargon, US English. Default format: bullets, numbers first. When unsure about a rule, say so and tell me what to verify. Never invent citations.”\nAbout 60 words. Saved as custom instructions, it removes most of the back-and-forth from every chat for months."},
+{"t":"check","q":"A chat has run for two hours across five different clients. Answers start mixing up details. Why, and what is the fix?","a":"The context is crowded, and in very long chats older details may be dropped or blended. Start a fresh chat or project per client and task, with only the relevant files and instructions."},
+{"t":"warn","text":"Context is also data you share. Saved instructions, project files and memory follow the same privacy rules as any prompt: no IDs, passwords or identifiable client data unless your firm’s approved tool allows it."},
+{"t":"tip","text":"Write a 5-line briefing about your role, your readers and your preferred format, and save it as custom instructions in your approved AI tool."}
+],
+"takeaways":["The AI only knows its training plus what is in its context right now.","Use instructions, projects, files and memory to give lasting, reusable context.","Keep one chat per client or task, and apply privacy rules to saved context too."],
+"quiz":[
+{"q":"What does an AI model use to answer, besides its training?","options":["Everything on your computer","Only the very last sentence you typed","The context: messages, files and saved instructions","Your email inbox automatically"],"answer":2,"why":"The model only sees what is in its context window plus what it learned in training."},
+{"q":"Which is the best use of custom instructions?","options":["Storing client passwords for convenience","A short note on your role, readers and preferred format","A full copy of every client’s ledger","Nothing; they slow the AI down"],"answer":1,"why":"Short, reusable background removes repeated explaining without exposing sensitive data."},
+{"q":"Answers in a very long multi-client chat begin to mix details. What should you do?","options":["Start a fresh chat or project per client with only the relevant files","Type in capital letters","Ask the AI to try harder","Add every client’s files to the same chat"],"answer":0,"why":"Focused, separate context keeps the model working on the right information."}
+]
+}
+]});
