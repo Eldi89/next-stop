@@ -8,7 +8,7 @@ const FEEDS = {
     { source: 'CNBC Markets', url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258' },
     { source: 'MarketWatch', url: 'https://feeds.content.dowjones.io/public/rss/mw_topstories' },
     { source: 'MarketWatch Pulse', url: 'https://feeds.content.dowjones.io/public/rss/mw_marketpulse' },
-    { source: 'Yahoo Finance', url: 'https://finance.yahoo.com/news/rssindex' },
+    { source: 'CNBC', url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114' },
     { source: 'Investing.com', url: 'https://www.investing.com/rss/news_25.rss' },
   ],
   analysis: [
@@ -34,18 +34,38 @@ const SECTIONS = [
 ];
 
 const MARKETS = [
-  { symbol: '^GSPC', name: 'S&P 500' },
-  { symbol: '^IXIC', name: 'Nasdaq' },
-  { symbol: '^DJI', name: 'Dow Jones' },
-  { symbol: '^RUT', name: 'Russell 2000' },
-  { symbol: '^VIX', name: 'VIX (fear)' },
-  { symbol: '^TNX', name: '10Y Treasury', kind: 'yield' },
-  { symbol: 'FTSEMIB.MI', name: 'FTSE MIB' },
-  { symbol: 'EURUSD=X', name: 'EUR / USD', kind: 'fx' },
-  { symbol: 'GC=F', name: 'Gold' },
-  { symbol: 'CL=F', name: 'Oil (WTI)' },
-  { symbol: 'BTC-USD', name: 'Bitcoin' },
+  { symbol: '^GSPC', cnbc: '.SPX', name: 'S&P 500' },
+  { symbol: '^IXIC', cnbc: '.IXIC', name: 'Nasdaq' },
+  { symbol: '^DJI', cnbc: '.DJI', name: 'Dow Jones' },
+  { symbol: '^RUT', cnbc: '.RUT', name: 'Russell 2000' },
+  { symbol: '^VIX', cnbc: '.VIX', name: 'VIX (fear)' },
+  { symbol: '^TNX', cnbc: 'US10Y', name: '10Y Treasury', kind: 'yield' },
+  { symbol: 'FTSEMIB.MI', cnbc: '.FTMIB', name: 'FTSE MIB' },
+  { symbol: 'EURUSD=X', cnbc: 'EUR=', name: 'EUR / USD', kind: 'fx' },
+  { symbol: 'GC=F', cnbc: '@GC.1', name: 'Gold' },
+  { symbol: 'CL=F', cnbc: '@CL.1', name: 'Oil (WTI)' },
+  { symbol: 'BTC-USD', cnbc: 'BTC.CM=', name: 'Bitcoin' },
 ];
+
+const num = v => { const n = parseFloat(String(v == null ? '' : v).replace(/[,%+\s]/g, '')); return isFinite(n) ? n : null; };
+// Primary source: CNBC quote service (one request for all symbols). Spark lines come from Yahoo when it answers.
+async function cnbcQuotes(errors) {
+  const url = 'https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols=' + encodeURIComponent(MARKETS.map(m => m.cnbc).join('|')) + '&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json&events=1';
+  try {
+    const j = JSON.parse(await get(url, 7000, { Accept: 'application/json' }));
+    const list = [].concat(((j.FormattedQuoteResult || {}).FormattedQuote) || []);
+    const out = {};
+    for (const q of list) {
+      const m = MARKETS.find(x => x.cnbc === q.symbol); if (!m) continue;
+      const price = num(q.last), prev = num(q.previous_day_closing);
+      let change = num(q.change); if (change == null && price != null && prev != null) change = price - prev;
+      let pct = num(q.change_pct); if (pct == null && prev) pct = change / prev * 100;
+      if (price != null) out[m.symbol] = { symbol: m.symbol, name: m.name, kind: m.kind || 'index', price, change: change || 0, changePct: pct || 0, spark: [] };
+    }
+    if (!Object.keys(out).length) errors.push('CNBC quotes: empty response');
+    return out;
+  } catch (e) { errors.push('CNBC quotes: ' + e.message); return {}; }
+}
 
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1';
 let memo = null; // per-instance cache { key, at, data }
@@ -101,12 +121,17 @@ async function loadSection(sec, errors) {
     .filter(i => { const k = i.title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').slice(0, 60); if (seen.has(k)) return false; seen.add(k); return true; })
     .sort((a, b) => (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0));
   // keep a mix of sources: max 3 per source
-  const per = {};
-  items = items.filter(i => (per[i.source] = (per[i.source] || 0) + 1) <= 3).slice(0, sec.limit);
+  const bySrc = {};
+  items.forEach(i => (bySrc[i.source] = bySrc[i.source] || []).push(i));
+  const queues = Object.values(bySrc).map(q => q.slice(0, 3));
+  const mixed = [];
+  while (mixed.length < sec.limit && queues.some(q => q.length)) queues.forEach(q => { if (q.length && mixed.length < sec.limit) mixed.push(q.shift()); });
+  items = mixed.sort((a, b) => (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0));
   return { id: sec.id, title: sec.title, items };
 }
 
-async function quote(m) {
+async function quote(m, errors) {
+  let last = '';
   for (const host of ['query1', 'query2']) {
     try {
       const txt = await get(`https://${host}.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(m.symbol)}?range=1mo&interval=1d`, 6000);
@@ -119,8 +144,9 @@ async function quote(m) {
       if (m.kind === 'yield' && price > 20) { price /= 10; prev /= 10; spark = spark.map(v => v / 10); }
       const change = price - prev;
       return { symbol: m.symbol, name: m.name, kind: m.kind || 'index', price, change, changePct: prev ? (change / prev) * 100 : 0, spark: spark.map(v => +v.toFixed(4)), currency: r.meta.currency };
-    } catch (e) { /* try next host */ }
+    } catch (e) { last = e.message; }
   }
+  if (m.symbol === '^GSPC' && errors) errors.push('Yahoo chart: ' + last);
   return null;
 }
 
@@ -167,9 +193,14 @@ async function build() {
   const errors = [];
   const [sections, quotes] = await Promise.all([
     Promise.all(SECTIONS.map(s => loadSection(s, errors))),
-    Promise.all(MARKETS.map(quote)),
+    Promise.all([cnbcQuotes(errors), Promise.all(MARKETS.map(m => quote(m, errors)))]),
   ]);
-  const markets = quotes.filter(Boolean);
+  const [cn, yh] = quotes;
+  const markets = MARKETS.map((m, i) => {
+    const a = cn[m.symbol], b = yh[i];
+    if (a) { if (b && b.spark && b.spark.length) a.spark = b.spark; return a; }
+    return b;
+  }).filter(Boolean);
   if (markets.length < MARKETS.length) errors.push(`market data: ${MARKETS.length - markets.length} of ${MARKETS.length} quotes unavailable`);
   let brief = await aiBrief(markets, sections);
   if (!brief || brief.error) { if (brief && brief.error) errors.push(brief.error); brief = autoBrief(markets, sections); }
