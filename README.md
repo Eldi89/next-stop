@@ -47,3 +47,4 @@ The version is in `source/src/VERSION` and shows at the bottom of the You screen
 - 1.0.0: first release, 98 lessons, exams, review deck, morning report
 - 1.1.0: CNBC market prices in the morning report, mixed learning sources, visible version number
 - 1.2.0: renamed from Fermata to Next Stop
+- 1.2.1: new Home Screen icon, a station sign that reads Next Stop
