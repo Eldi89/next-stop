@@ -1,5 +1,5 @@
 // Fermata service worker: the app and all lessons work offline (subway tunnels).
-const VERSION = '202610150335';
+const VERSION = '1.1.0-202610150427';
 const CACHE = 'fermata-' + VERSION;
 const CORE = ['/', '/index.html', '/manifest.json', '/icon-180.png', '/icon-192.png', '/icon-512.png', '/fonts/archivo-latin-wdth-normal.woff2', '/fonts/literata-latin-opsz-normal.woff2', '/fonts/literata-latin-opsz-italic.woff2'];
 

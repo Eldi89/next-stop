@@ -38,3 +38,9 @@ Add or remove any RSS feed URL there. Market tiles are in the `MARKETS` list.
 ## Your progress
 
 Progress lives on the phone. Use You → Back up progress to save a file, and Restore to move it to a new phone.
+
+## Version
+
+The version is in `source/src/VERSION` and shows at the bottom of the You screen.
+- 1.0.0: first release, 98 lessons, exams, review deck, morning report
+- 1.1.0: CNBC market prices in the morning report, mixed learning sources, visible version number

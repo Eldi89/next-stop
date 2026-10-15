@@ -10431,7 +10431,7 @@ LEARN.addExams({"subject":"inner","exams":{
 ]
 }});
 </script>
-<script>window.FERMATA_BUILD="202610150335";
+<script>window.FERMATA_BUILD="202610150427";window.FERMATA_VERSION="1.1.0";
 /* Fermata figure renderer: turns figure data into clean HTML/SVG using the lesson's line color (CSS var --c). */
 const FIG = (() => {
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -10850,7 +10850,7 @@ const FIG = (() => {
       <div class="field"><label>Your lines (you can change these later)</label>${SUBJECTS.map(s => `<button class="row" data-s="${s.id}" style="padding:10px 0">${bullet(s.id)}<div class="grow"><div class="t">${s.name}</div><div class="s">${s.blurb}</div></div><span class="toggle ${sel.has(s.id) ? 'on' : ''}" style="${subStyle(s.id)}"></span></button>`).join('')}</div>
       <div class="field"><label>How should I choose your daily lesson?</label>${modeSeg()}</div></div>
       <button class="btn line block" id="go" style="margin-top:18px;height:52px">Start riding</button>
-      <p class="muted" style="font-size:13.5px;text-align:center;margin-top:14px">Tip: in Safari tap Share, then “Add to Home Screen”, so Fermata opens like an app and works offline in the tunnel.</p>`;
+      <p class="muted" style="font-size:12.5px;text-align:center;margin-top:10px">Version ${window.FERMATA_VERSION || 'dev'}</p><p class="muted" style="font-size:13.5px;text-align:center;margin-top:14px">Tip: in Safari tap Share, then “Add to Home Screen”, so Fermata opens like an app and works offline in the tunnel.</p>`;
     $$('[data-s]').forEach(b => b.onclick = () => { const id = b.dataset.s; sel.has(id) ? sel.delete(id) : sel.add(id); $('.toggle', b).classList.toggle('on', sel.has(id)); });
     wireModeSeg();
     $('#go').onclick = () => { S.name = $('#nm').value.trim(); S.subjects = SUBJECTS.map(s => s.id).filter(id => sel.has(id)); if (!S.subjects.length) S.subjects = SUBJECTS.map(s => s.id); S.onboarded = true; S.today = null; save(); location.hash = '#/today'; };
@@ -11212,7 +11212,7 @@ const FIG = (() => {
         <button class="row" id="exp"><div class="grow"><div class="t">Back up progress</div><div class="s">Download a small file with everything you have done</div></div></button>
         <label class="row" style="cursor:pointer"><div class="grow"><div class="t">Restore from backup</div><div class="s">Use it to move to a new phone or browser</div></div><input type="file" id="imp" accept="application/json,.json" hidden></label>
         <button class="row" id="rst"><div class="grow"><div class="t" style="color:var(--bad)">Reset all progress</div></div></button></div>
-      <p class="muted" style="font-size:12.5px;text-align:center;margin:22px 0 0">Fermata · ${L.lessons.length} stations · ${Object.values(L.exams).reduce((a, e) => a + Object.values(e).reduce((x, q) => x + q.length, 0), 0)} exam questions · build ${window.FERMATA_BUILD || 'dev'}</p>`;
+      <p class="muted" style="font-size:12.5px;text-align:center;margin:22px 0 0"><b style="color:var(--ink-2)">Fermata v${window.FERMATA_VERSION || 'dev'}</b><br>${L.lessons.length} stations · ${Object.values(L.exams).reduce((a, e) => a + Object.values(e).reduce((x, q) => x + q.length, 0), 0)} exam questions · build ${window.FERMATA_BUILD || 'dev'}</p>`;
     wireModeSeg();
     $$('[data-s]').forEach(b => b.onclick = () => { const id = b.dataset.s; const on = S.subjects.includes(id); if (on && S.subjects.length === 1) return toast('Keep at least one line'); S.subjects = on ? S.subjects.filter(x => x !== id) : [...S.subjects, id]; S.today = null; save(); $('.toggle', b).classList.toggle('on', !on); });
     $('#nm').onchange = e => { S.name = e.target.value.trim(); save(); };
